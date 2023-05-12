@@ -1,6 +1,6 @@
 #include <iostream>
-#include "C:\Users\josep\OneDrive\Documentos\Trabajos\Tareas con libreria\Tareas primer parcial.h"
-#include "C:\Users\josep\OneDrive\Documentos\Trabajos\Tareas con libreria\Tareas segundo parcial.h"
+#include "D:\Trabajos\Tareas con libreria\Tareas primer parcial.h"
+#include "D:\Trabajos\Tareas con libreria\Tareas segundo parcial.h"
 
 using namespace std;
 
