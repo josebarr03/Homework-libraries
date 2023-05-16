@@ -4,11 +4,13 @@
 #include <algorithm>
 void segundoparcial();
 void menu2();
+//
 void primeratarea2();
 void piedrapapeltijera();
 void juego();
 void revancha();
 void salir();
+//
 void Ejemplopuntero();
 void ejerciciovector();
 void Ejemplopuntero2();
@@ -16,6 +18,10 @@ void Ejemplopuntero3();
 void Ejemploiterador();
 void Guessword();
 void Hangman();
+//
+void parametro();
+void badswap(int x, int y);
+void goodswap(int& x, int& y);
 
 using namespace std;
 
@@ -37,7 +43,8 @@ void menu2()
         cout << "5- Ejemplo iterador." << endl;
         cout << "6- Segunda tarea. Guess the word." << endl;
         cout << "7- Tercera tarea. Hangman." << endl;
-        cout << "8- Salir." << endl;
+        cout << "8- Ejercicio funcion con parametros" << endl;
+        cout << "9- Salir." << endl;
         cin >> elecctar2;
         switch (elecctar2) // switch para casos dependiendo de la opcion elegida
         {
@@ -63,12 +70,15 @@ void menu2()
             Hangman();
             break;
         case 8:
+            parametro();
+            break;
+        case 9:
             exit(EXIT_SUCCESS);
         default:
             cout << "Opcion elegida no valida, seleccione otra opcion" << endl;
             break;
         }
-    } while (elecctar2 > 0 || elecctar2 < 7);
+    } while (elecctar2 > 0 || elecctar2 < 8);
 }
 void primeratarea2()
 {
@@ -208,6 +218,7 @@ void salir()
         cout << "Elija alguna de las dos opciones" << endl;
     }
 }
+//
 void Ejemplopuntero()
 {
     //vector <string> myStuff = {"espada", "martillo", "bomba"};
@@ -468,10 +479,34 @@ void Hangman()
 
     vector <string> words;
     words.push_back("REPTIL");
+    words.push_back("JUPITER");
+    words.push_back("VIOLETA");
     words.push_back("BALLENA");
     words.push_back("IGLESIA");
     words.push_back("MAGIA");
     words.push_back("CIUDAD");
+    words.push_back("GALEON");
+    words.push_back("lEON");
+    words.push_back("BORREGO");
+    words.push_back("CASTROSO");
+    words.push_back("DIABLO");
+    words.push_back("CUERVO");
+    words.push_back("BRUJA");
+    words.push_back("MOTOSIERRA");
+    words.push_back("COBARDE");
+    words.push_back("HAMSTER");
+    words.push_back("CLON");
+    words.push_back("DOCTORA");
+    words.push_back("PASTE");
+    words.push_back("BOREAL");
+    words.push_back("EMPERADOR");
+    words.push_back("ENANO");
+    words.push_back("LUNA");
+    words.push_back("CARRO");
+    words.push_back("DONA");
+    words.push_back("PASTEL");
+    words.push_back("PRESIDENTE");
+    words.push_back("DISFRAZ");
 
     srand(time(NULL));
     int randomNumber = rand();
@@ -482,7 +517,6 @@ void Hangman()
     string letrasfallidas;
     char letra;
     string soFar(Word.size(), '_');
-    cout << Word << endl;
     cout << "Bienvenido al ahorcado." << endl;
     cout << soFar << endl;
     cout << "Tienes que ingresar una letra para ir descubriendo la palabra." << endl;
@@ -514,6 +548,7 @@ void Hangman()
                 vidas = vidas - 1;
                 letrasfallidas.push_back(letra);
                 letra = ' ';
+                cout << soFar << endl;
                 cout << endl;
                 cout << endl;
             }
@@ -532,6 +567,7 @@ void Hangman()
                 cout << endl;
                 cout << "Estas ahorcado. Has perdido." << endl;
                 cout << "Vidas restantes: " << vidas << endl;
+                cout << "La palabra era: " << Word << endl;
                 break;
             case 1:
                 cout << " +---+" << endl;
@@ -639,4 +675,30 @@ void Hangman()
             }
         }
     } while (vidas > 0 && soFar != Word);
+}
+//
+void parametro()
+{
+    int score1 = 20;
+    int score2 = 100;
+
+    badswap(score1, score2);
+    cout << "Puntaje 1: " << score1 << endl;
+    cout << "Puntaje 2: " << score2 << endl;
+    cout << endl;
+    goodswap(score1, score2);
+    cout << "Puntaje 1: " << score1 << endl;
+    cout << "Puntaje 2: " << score2 << endl;
+}
+void badswap(int x, int y) 
+{
+    int aux = x; // aux = 20
+    x = y; // x = 100
+    y = aux; // y = 20
+}
+void goodswap(int& x, int& y)
+{
+    int aux = x; // aux = 20
+    x = y; // x = 100
+    y = aux; // y = 20
 }
