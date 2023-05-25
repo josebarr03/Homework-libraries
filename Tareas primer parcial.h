@@ -3,6 +3,7 @@ void primerparcial();
 void menu();
 void primeratarea();
 void segundatarea();
+//
 void terceratarea();
 void eleccej();//Ciclo eleccion de tarea
 void ej1();//Ejercicio 1 Tarea
@@ -95,6 +96,7 @@ void segundatarea()
         }
     } while (elecc != num);
 }
+//
 void terceratarea() 
 {
     eleccej();

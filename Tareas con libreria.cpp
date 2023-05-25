@@ -1,6 +1,7 @@
 #include <iostream>
 #include "D:\Trabajos\Tareas con libreria\Tareas primer parcial.h"
 #include "D:\Trabajos\Tareas con libreria\Tareas segundo parcial.h"
+#include "D:\Trabajos\Tareas con libreria\Tareas tercer parcial.h"
 
 using namespace std;
 
@@ -33,7 +34,7 @@ void ciclo()
             segundoparcial();
             break;
         case 3:
-            cout << "3 tarea." << endl;
+            tercerparcial();
             break;
         case 4:
             cout << "4 tarea." << endl;

@@ -22,6 +22,9 @@ void Hangman();
 void parametro();
 void badswap(int x, int y);
 void goodswap(int& x, int& y);
+//
+void cincomin();
+void display(const vector<string>& vec);
 
 using namespace std;
 
@@ -35,7 +38,7 @@ void menu2()
     do // ciclo para repetir el menu hasta elegir la opcion salir
     {
         cout << endl << "Bienvenido a las tareas del segundo parcial." << endl;
-        cout << "Tiene tres opciones para elegir." << endl;
+        cout << "Tiene diez opciones para elegir." << endl;
         cout << "1- Primera tarea. Piedra, papel o tijera." << endl;
         cout << "2- Ejemplo puntero." << endl;
         cout << "3- Ejemplo de puntero dos." << endl;
@@ -44,7 +47,8 @@ void menu2()
         cout << "6- Segunda tarea. Guess the word." << endl;
         cout << "7- Tercera tarea. Hangman." << endl;
         cout << "8- Ejercicio funcion con parametros" << endl;
-        cout << "9- Salir." << endl;
+        cout << "9- Funcion display." << endl;
+        cout << "10- Salir." << endl;
         cin >> elecctar2;
         switch (elecctar2) // switch para casos dependiendo de la opcion elegida
         {
@@ -73,12 +77,15 @@ void menu2()
             parametro();
             break;
         case 9:
+            cincomin();
+            break;
+        case 10:
             exit(EXIT_SUCCESS);
         default:
             cout << "Opcion elegida no valida, seleccione otra opcion" << endl;
             break;
         }
-    } while (elecctar2 > 0 || elecctar2 < 8);
+    } while (elecctar2 > 0 || elecctar2 < 9);
 }
 void primeratarea2()
 {
@@ -701,4 +708,23 @@ void goodswap(int& x, int& y)
     int aux = x; // aux = 20
     x = y; // x = 100
     y = aux; // y = 20
+}
+//
+void cincomin()
+{
+    vector<string> inventory;
+
+    inventory.push_back("sword");
+    inventory.push_back("armor");
+    inventory.push_back("gun");
+
+    display(inventory);
+}
+void display(const vector<string>& vec)
+{
+    vector<string>::const_iterator iter;
+    for (iter = vec.begin(); iter != vec.end(); iter++)
+    {
+        cout << *iter << endl;
+    }
 }
