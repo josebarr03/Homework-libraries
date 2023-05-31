@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <locale>
 void segundoparcial();
 void menu2();
 //
@@ -25,6 +26,13 @@ void goodswap(int& x, int& y);
 //
 void cincomin();
 void display(const vector<string>& vec);
+//
+void examencorregido();
+string GetRandomItem(vector<string>& items);
+void DisplayInventory(vector<string>& inventory);
+bool AskYesNo(string question);
+void showMenu();
+int askNumber(string question, int high, int low);
 
 using namespace std;
 
@@ -48,7 +56,8 @@ void menu2()
         cout << "7- Tercera tarea. Hangman." << endl;
         cout << "8- Ejercicio funcion con parametros" << endl;
         cout << "9- Funcion display." << endl;
-        cout << "10- Salir." << endl;
+        cout << "10- Examen corregido" << endl;
+        cout << "11- Salir." << endl;
         cin >> elecctar2;
         switch (elecctar2) // switch para casos dependiendo de la opcion elegida
         {
@@ -80,12 +89,15 @@ void menu2()
             cincomin();
             break;
         case 10:
+            examencorregido();
+            break;
+        case 11:
             exit(EXIT_SUCCESS);
         default:
             cout << "Opcion elegida no valida, seleccione otra opcion" << endl;
             break;
         }
-    } while (elecctar2 > 0 || elecctar2 < 9);
+    } while (elecctar2 > 0 || elecctar2 < 10);
 }
 void primeratarea2()
 {
@@ -727,4 +739,104 @@ void display(const vector<string>& vec)
     {
         cout << *iter << endl;
     }
+}
+//
+const int MAX_ITEMS = 6;
+const int SPACE_COST = 6;
+const int FREE_ITEMS = 3;
+void examencorregido()
+{
+    std::setlocale(LC_ALL, "es_ES.UTF-8");
+    unsigned int gems = 8;
+
+    // Items
+    vector<string> items = { "espada", "martillo", "bomba", "escudo" };
+
+    // inventory
+    vector<string> inventory;
+    inventory.reserve(MAX_ITEMS);
+    vector<string>::const_iterator iter;
+    bool isContinue;
+
+    do
+    {
+        cout << "--INVENTARIO--" << endl;
+        cout << "Gemas: " << gems << endl;
+        string itemFound = GetRandomItem(items);
+
+        cout << "Has encontrado un(a) " << itemFound << "!!" << endl;
+        if (inventory.size() >= FREE_ITEMS)
+        {
+            showMenu();
+            int option = askNumber("Elige un número entre: ", 3, 1);
+
+            switch (option)
+            {
+            case 1:
+                // Replace item
+                break;
+            case 3:
+                // Buy Space
+                break;
+            default:
+                break;
+            }
+        }
+        else
+        {
+            inventory.push_back(itemFound);
+        }
+        inventory.push_back(itemFound);
+
+        DisplayInventory(inventory); // Display Items
+        isContinue = AskYesNo("Seguir explorando?");
+    } while (isContinue);
+
+    cout << "Vuelve pronto" << endl;
+}
+string GetRandomItem(vector<string>& items)
+{
+    srand(time(NULL));
+    int itemRandomIndex = (rand() % items.size());
+    string itemSelected = items[itemRandomIndex];
+
+    return itemSelected;
+}
+void DisplayInventory(vector<string>& inventory)
+{
+    vector<string>::const_iterator iter;
+    int i = 0;
+    cout << "--Tus items--" << endl;
+    for (iter = inventory.begin(); iter != inventory.end(); iter++)
+    {
+        cout << i ++ << "_" << *iter << endl;
+    }
+}
+bool AskYesNo(string question)
+{
+    char answer;
+    do
+    {
+        cout << question << endl << "(y/n)";
+        cin >> answer;
+    } while (answer != 'y' && answer != 'n');
+    if (answer == 'y')
+    {
+        return true;
+    }
+    return false;
+}
+void showMenu()
+{
+    cout << "Ya no tienes espacio, que te gutaria hacer?" << endl << "1- Reemplazar objeto" << endl << "2- Continuar sin recoger" << endl << "3- Comprar un espacio por 6 gemas" << SPACE_COST << " gemas" << endl;
+}
+int askNumber(string question, int high, int low)
+{
+    int number = 0;
+    do
+    {
+        cout << question << "entre " << low << " y " << high << endl;
+        cin >> number;
+    } while (number > high || number < low);
+    return number;
 }
