@@ -748,6 +748,7 @@ void examencorregido()
 {
     std::setlocale(LC_ALL, "es_ES.UTF-8");
     unsigned int gems = 8;
+    int reemplazo;
 
     // Items
     vector<string> items = { "espada", "martillo", "bomba", "escudo" };
@@ -773,10 +774,31 @@ void examencorregido()
             switch (option)
             {
             case 1:
-                // Replace item
+                cout << "Elija el objeto que desea reemplazar " << endl;
+                DisplayInventory(inventory);
+                cin >> reemplazo;
+                cout << endl;
+                switch (reemplazo)
+                {
+                case 1:
+                    inventory[0] = itemFound;
+                    DisplayInventory(inventory);
+                    break;
+                case 2:
+                    inventory[1] = itemFound;
+                    DisplayInventory(inventory);
+                    break;
+                case 3:
+                    inventory[2] = itemFound;
+                    DisplayInventory(inventory);
+                    break;
+                default:
+                    cout << "Elija el objeto que desea reemplazar " << endl;
+                    break;
+                }
                 break;
             case 3:
-                // Buy Space
+                cout << "La cantidad " << endl;
                 break;
             default:
                 break;
@@ -785,10 +807,8 @@ void examencorregido()
         else
         {
             inventory.push_back(itemFound);
+            DisplayInventory(inventory); // Display Items
         }
-        inventory.push_back(itemFound);
-
-        DisplayInventory(inventory); // Display Items
         isContinue = AskYesNo("Seguir explorando?");
     } while (isContinue);
 
@@ -828,7 +848,7 @@ bool AskYesNo(string question)
 }
 void showMenu()
 {
-    cout << "Ya no tienes espacio, que te gutaria hacer?" << endl << "1- Reemplazar objeto" << endl << "2- Continuar sin recoger" << endl << "3- Comprar un espacio por 6 gemas" << SPACE_COST << " gemas" << endl;
+    cout << "Ya no tienes espacio, que te gutaria hacer?" << endl << "1- Reemplazar objeto" << endl << "2- Continuar sin recoger" << endl << "3- Comprar un espacio por " << SPACE_COST << " gemas" << endl;
 }
 int askNumber(string question, int high, int low)
 {
